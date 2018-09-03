@@ -2,7 +2,31 @@ function askWatson() {
     
 
     var ques = document.getElementById("question").value;
-    console.log("About to start AJAX.");
+    console.log("About to send request.");
+  
+    $.ajax({
+        type: "POST",
+        url: "https://nats1750.mybluemix.net/sendques",
+        crossDomain: true,
+        data: { "question" : ques },
+        success: function (data) {
+           
+            console.log("AJAX SUCCESS!");
+            $("#chatbox-body").append("<p>"+response+"</p>");
+
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+
+}
+// str.replace(/^"(.+(?="$))"$/, '$1');
+
+function alterAskWatson() {
+
+    var ques = document.getElementById("question").value;
+    
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -20,6 +44,7 @@ function askWatson() {
         
         $.ajax(settings).done(function (response) {
             console.log("Ajax complete.");
+            console.log(JSON.stringify(response));
             $("#chatbox-body").append("<p>"+response+"</p>");
         
         });
