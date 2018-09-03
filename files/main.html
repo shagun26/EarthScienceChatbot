@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Earth Science Chatbot</title>
+	<link rel="stylesheet" type="text/css" href="style.css">>
+	<link rel="stylesheet" type="text/css" href="./main.css">
+	<link rel="stylesheet" href="./bootstrap.min.css">
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="./req.js"></script>
+	
+</head>
+<body>
+
+	
+	<header class="header" id="main-header" role="banner">
+
+			<div id="site-logo">
+					<img class="yorklogo" src="../images/york_logo.png"
+						border="0" alt="York University">	
+			</div>
+
+	</header>
+
+	<div class="red-bar">
+		<h1 class="title">Earth Science Chatbot</h1>
+
+	</div>
+
+	<div class="container">
+
+
+		<div class="row mt-1">
+			<div class="chatbox">
+				<div class="chatbox-body" id="chatbox-body">
+										</div>
+			</div>
+		</div>
+
+		<div class="row mt-3">
+			<form id="submit-conversation" action="">
+				<input class="user-input" name="question" id="question">
+				<button id="submitButton" type="submit" onclick="askWatson()">Send</button>
+			</form>
+		</div>
+
+		<div class="filler"></div>
+	</div>
+
+	
+	<script>
+		var message = "";
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+img.yorklogo{
+	width: 140px;
+}
+
+#site-logo {
+	margin-top: 15px;
+	margin-left: 191px;
+}
+
+.red-bar {
+	background-color:#e31837;
+	color:#ffffff;
+	float: none;
+	margin: 0;
+}
+
+.title {
+	text-align: left;
+	color: #ffffff;
+	padding: 20px 0px;
+	margin-left: 200px;
+	margin-bottom: 0;
+	font-weight: 700;
+	text-shadow: 1px 1px #9a0100;
+	letter-spacing: .1em;
+	line-height: 1em;
+	font-size: 1.5em;
+	display: block;
+	font-family: 'Lato', arial, sans-serif;
+}
+
+.container {
+	width: 80%;
+}
