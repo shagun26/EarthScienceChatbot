@@ -2,10 +2,10 @@ function askWatson() {
     
 
     var ques = document.getElementById("question").value;
-
+    console.log("About to start AJAX.");
     var settings = {
         "async": true,
-        "crossDomain": false,
+        "crossDomain": true,
         "url": "https://nats1750.mybluemix.net/sendques",
         "method": "POST",
         "headers": {
@@ -19,7 +19,9 @@ function askWatson() {
         }
         
         $.ajax(settings).done(function (response) {
+            console.log("Ajax complete.");
             $("#chatbox-body").append("<p>"+response+"</p>");
+        
         });
 
 }
