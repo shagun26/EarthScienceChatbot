@@ -1,14 +1,17 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
+var cfenv = require('cfenv');
 
+var appEnv = cfenv.getAppEnv();
+var instance = appEnv.app.instance_index || 0;
 
 var server = http.createServer((req, res) => 
 {
 
     console.log("Request was made: " + req.url);
     
-    if (req.url === '/')
+    if (req.url === '/' || req.url.includes('?question'))
     {
         fs.readFile('./public/main.html', 'UTF-8', (err, html) => 
         {
@@ -26,8 +29,9 @@ var server = http.createServer((req, res) =>
     }
     else if (req.url.match("\.png$"))
     {
+        console.log("Registered as image.");
         var imgPath = path.join(__dirname, 'public', req.url);
-        var fileStream = fs.createReadStream(imgPath, "UTF-8");
+        var fileStream = fs.createReadStream(imgPath);
         res.writeHead(200, {'Content-Type': 'image/png'});
         fileStream.pipe(res);
     }
@@ -44,4 +48,10 @@ var server = http.createServer((req, res) =>
         res.end("Page Not Found!");
     }
 
-}).listen(8000);
+});
+
+server.listen(appEnv.port, () =>{
+
+    console.log("server starting on " + appEnv.url);
+
+});
