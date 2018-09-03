@@ -1,7 +1,7 @@
 function askWatson() {
     
-
     var ques = document.getElementById("question").value;
+    const box = document.getElementById("chatbox");
     console.log("About to send request.");
   
     $.ajax({
@@ -12,7 +12,16 @@ function askWatson() {
         success: function (data) {
            
             console.log("AJAX SUCCESS!");
-            $("#chatbox-body").append("<p>"+response+"</p>");
+            var date = new Date();
+            var strTime = getTime(date);
+            $("#chatbox-body").append("<p style=\"text-align:center\">" + strTime + "</p>");
+            $("#chatbox-body").append("<p style=\"text-align:right\">"+ques+"</p>");
+            setTimeout(function() {
+                $("#chatbox-body").append("<p>"+data+"</p>");
+                box.scrollTop = box.scrollHeight;
+                
+            }, 1500);
+            
 
         },
         error: function (err) {
@@ -21,53 +30,16 @@ function askWatson() {
     });
 
 }
-// str.replace(/^"(.+(?="$))"$/, '$1');
 
-function alterAskWatson() {
-
-    var ques = document.getElementById("question").value;
+function getTime(d) {
     
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://nats1750.mybluemix.net/sendques",
-        "method": "POST",
-        "headers": {
-          "Cache-Control": "no-cache",
-          "Postman-Token": "c432bb74-a84f-4837-9acc-36d82983dd8d"
-        },
-        "processData": false,
-        "contentType": false,
-        "mimeType": "multipart/form-data",
-        "data": ques
-        }
-        
-        $.ajax(settings).done(function (response) {
-            console.log("Ajax complete.");
-            console.log(JSON.stringify(response));
-            $("#chatbox-body").append("<p>"+response+"</p>");
-        
-        });
-
-}
-
-
-function date() {
-    let date = new Date();
-
-	let dd = date.getDate();
-	let mm = date.getMonth() + 1;
-	let yy = date.getFullYear();
-
-	if (dd < 10) {
-		dd = '0' + dd;
-	}
-	if (mm < 10) {
-		mm = '0' + mm;
-    }
-    
-
-	$("#currentDate").html(mm + '/' + dd + '/' + yy);
-	console.log(message);
+    var hours = d.getHours();
+    var minutes = d.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ampm;
+    return strTime;
 }
 

@@ -29,6 +29,10 @@ img.yorklogo{
 	font-family: 'Lato', arial, sans-serif;
 }
 
+.chatbox {
+	overflow-y: auto;
+}
+
 .container {
 	width: 80%;
 }
